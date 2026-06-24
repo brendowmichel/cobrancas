@@ -1,34 +1,29 @@
-# Dependencies
-node_modules/
-.pnpm-store/
+# Dados importados/exportados
+*.csv
+*.xlsx
+*.xls
+*.ods
 
-# Next.js
-.next/
-out/
-
-# Production
-dist/
-build/
-
-# Environment variables
+# Segredos e configuracoes locais
 .env
 .env.*
 !.env.example
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Arquivos temporarios
+*.tmp
+*.temp
+~$*
 
-# OS/editor
+# Sistema/editores
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 
-# Local data exports
-*.csv
-*.xlsx
-*.xls
-*.ods
+# Dependencias/builds futuros
+node_modules/
+.next/
+.pnpm-store/
+dist/
+build/
+coverage/
