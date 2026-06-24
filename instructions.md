@@ -556,6 +556,14 @@ A dashboard deve exibir apenas informacoes de cobranca vencida. Nao exibir cards
 
 O fluxo principal de importacao do usuario final e o botao `Importar Excel`.
 
+Diretriz visual a partir da v54:
+
+- manter tema claro;
+- usar `GT Walsheim Pro` quando disponivel e `Manrope` como fallback web;
+- botoes pequenos, tags e chips devem ter formato pill com borda visivel;
+- usar acento azul-esverdeado suave em botoes secundarios, menus e chips de contato;
+- nao migrar a interface para modo escuro.
+
 Na importacao pelo Web App:
 
 - exibir progresso visual durante a leitura local do arquivo;
@@ -679,6 +687,7 @@ Para importar um `.xlsx` diretamente por `fileId`, use `importarXlsxDoDrive(file
 
 | Versao | Data | Descricao |
 |--------|------|-----------|
+| v54 | 2026-06-24 | Atualizada a aparencia da dashboard GAS: tipografia passa a priorizar `GT Walsheim Pro` com fallback `Manrope`, botoes e chips ganham visual pill com borda azul-esverdeada e tags de status/cadastro/duplicatas ficam com preenchimento claro e borda visivel, mantendo o tema claro. |
 | v53 | 2026-06-24 | Ajuste visual da dashboard GAS: linhas com agendamento vencido agora mantem o estado vermelho ao passar o mouse ou abrir o detalhamento, escurecendo o vermelho em vez de cair no cinza do hover/selecionado generico. |
 | v52 | 2026-06-24 | Corrigido payload Supabase de clientes: `status_cadastro` vazio agora e enviado como `null`, evitando violacao da constraint `chk_status_cadastro`. Datas condicionais vazias em atualizacao de status tambem passam a ir como `null`. Registrado em `google_script_fixes.md`. |
 | v51 | 2026-06-24 | Escritas principais migradas para Supabase: salvar status atualiza `cobranca_clientes` e grava historico em `cobranca_historico_status`; importacao Excel passa a fazer upsert em `cobranca_titulos` e `cobranca_clientes`, registrar logs/duplicidades no Supabase e marcar ausentes como inativos. Menu/estado deixam de exigir preparo de abas quando Supabase esta configurado. |
