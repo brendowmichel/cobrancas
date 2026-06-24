@@ -671,6 +671,7 @@ Para importar um `.xlsx` diretamente por `fileId`, use `importarXlsxDoDrive(file
 
 | Versao | Data | Descricao |
 |--------|------|-----------|
+| v53 | 2026-06-24 | Ajuste visual da dashboard GAS: linhas com agendamento vencido agora mantem o estado vermelho ao passar o mouse ou abrir o detalhamento, escurecendo o vermelho em vez de cair no cinza do hover/selecionado generico. |
 | v52 | 2026-06-24 | Corrigido payload Supabase de clientes: `status_cadastro` vazio agora e enviado como `null`, evitando violacao da constraint `chk_status_cadastro`. Datas condicionais vazias em atualizacao de status tambem passam a ir como `null`. Registrado em `google_script_fixes.md`. |
 | v51 | 2026-06-24 | Escritas principais migradas para Supabase: salvar status atualiza `cobranca_clientes` e grava historico em `cobranca_historico_status`; importacao Excel passa a fazer upsert em `cobranca_titulos` e `cobranca_clientes`, registrar logs/duplicidades no Supabase e marcar ausentes como inativos. Menu/estado deixam de exigir preparo de abas quando Supabase esta configurado. |
 | v50 | 2026-06-24 | Detalhamento do dashboard Supabase deixa de mostrar `0 duplicatas` quando a lista veio apenas do fallback da view. Clientes sem titulos retornados por `cobranca_titulos` agora exibem mensagem operacional indicando falta de SELECT/politica RLS ou necessidade de usar `service_role key`. |
