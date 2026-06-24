@@ -687,6 +687,7 @@ Para importar um `.xlsx` diretamente por `fileId`, use `importarXlsxDoDrive(file
 
 | Versao | Data | Descricao |
 |--------|------|-----------|
+| v56 | 2026-06-24 | Ajustados elementos do header e ordenacao da dashboard GAS: icone principal trocado para Material Symbols `account_balance_wallet` com fundo no tom dos botoes, badge de versao movida para ao lado do titulo `Cobrancas`, e marcadores de ordenacao passam a usar `arrow_drop_up/down` preenchido do Material Design em vez de texto `^/v`. |
 | v55 | 2026-06-24 | Refinamento visual da v54: removido o brilho/sombra interna branca dos chips/tags/pills, cards KPI e secoes principais ficam planos com borda limpa em vez de sombra, e legenda ativa dos graficos passa a usar borda/fundo suave em vez de sombra interna. |
 | v54 | 2026-06-24 | Atualizada a aparencia da dashboard GAS: tipografia passa a priorizar `GT Walsheim Pro` com fallback `Manrope`, botoes e chips ganham visual pill com borda azul-esverdeada e tags de status/cadastro/duplicatas ficam com preenchimento claro e borda visivel, mantendo o tema claro. |
 | v53 | 2026-06-24 | Ajuste visual da dashboard GAS: linhas com agendamento vencido agora mantem o estado vermelho ao passar o mouse ou abrir o detalhamento, escurecendo o vermelho em vez de cair no cinza do hover/selecionado generico. |
