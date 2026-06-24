@@ -687,6 +687,7 @@ Para importar um `.xlsx` diretamente por `fileId`, use `importarXlsxDoDrive(file
 
 | Versao | Data | Descricao |
 |--------|------|-----------|
+| v59 | 2026-06-24 | Simplificado o subtitulo do header da dashboard GAS: agora exibe apenas a data/hora da ultima atualizacao, enquanto totais de inadimplentes, duplicatas e maior atraso aparecem em tooltip ao passar o mouse ou focar o texto. |
 | v58 | 2026-06-24 | Refinadas as tags de status de cadastro na dashboard GAS: tags ao lado do CNPJ/CPF ficaram menores, sem borda e com preenchimento suave para diferenciar visualmente dos status de contato. |
 | v57 | 2026-06-24 | Ajustada a posicao das tags de status de cadastro na dashboard GAS: tags como `SUSPENSO`, `PERMUTA`, `PROTESTADO` e `DESCONSIDERADO` deixam de aparecer ao lado do nome do cliente e passam a ficar ao lado do CNPJ/CPF, liberando espaco para nomes longos. |
 | v56 | 2026-06-24 | Ajustados elementos do header e ordenacao da dashboard GAS: icone principal trocado para Material Symbols `account_balance_wallet` com fundo no tom dos botoes, badge de versao movida para ao lado do titulo `Cobrancas`, e marcadores de ordenacao passam a usar `arrow_drop_up/down` preenchido do Material Design em vez de texto `^/v`. |
