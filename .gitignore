@@ -1,0 +1,29 @@
+# Dados importados/exportados
+*.csv
+*.xlsx
+*.xls
+*.ods
+
+# Segredos e configuracoes locais
+.env
+.env.*
+!.env.example
+
+# Arquivos temporarios
+*.tmp
+*.temp
+~$*
+
+# Sistema/editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencias/builds futuros
+node_modules/
+.next/
+dist/
+build/
+coverage/
+
