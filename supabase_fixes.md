@@ -48,6 +48,22 @@ Na v61 foi criada a funcao `diagnosticarTitulosClienteSupabase(documento)`. Ela 
 
 Em divergencias entre Excel e dashboard, validar primeiro o estado bruto da tabela no Supabase. Nao presumir que a causa e agrupamento, importacao ou implantacao sem essa evidencia.
 
+## 2026-08-20 - Filtro PostgREST grande demais para o Apps Script
+
+### Erro
+
+```text
+Exception: Limite excedido: Comprimento do URL de UrlFetch.
+```
+
+### Causa
+
+A reconciliacao pos-importacao enviava 100 hashes SHA-256 no filtro PostgREST `in.(...)`. Embora o PostgREST aceite a consulta, a URL ultrapassava o limite do `UrlFetchApp` antes de chegar ao Supabase.
+
+### Correcao
+
+Na v62, o lote foi reduzido para 15 hashes. Cada lote e consultado, reativado e confirmado separadamente.
+
 ## 2026-06-24 - Decisao: desabilitar RLS nas tabelas do sistema
 
 ### Contexto

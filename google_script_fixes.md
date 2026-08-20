@@ -2,6 +2,30 @@
 
 Este arquivo registra erros de programacao encontrados no Google Apps Script e a correcao aplicada. Ele deve ser atualizado sempre que um erro de script, implantacao, permissao ou comportamento inesperado for diagnosticado e corrigido.
 
+## 2026-08-20 - Limite de comprimento de URL na reconciliacao Supabase
+
+### Erro
+
+```text
+Exception: Limite excedido: Comprimento do URL de UrlFetch.
+```
+
+### Contexto
+
+Na v60, a reconciliacao da importacao montava filtros PostgREST com ate 100 hashes SHA-256 em uma unica URL.
+
+### Causa
+
+Cada hash possui 64 caracteres. O filtro `hash_identificacao=in.(...)` com 100 valores ultrapassa o limite de URL aceito pelo `UrlFetchApp`.
+
+### Correcao aplicada
+
+Na v62, os hashes passaram a ser processados em lotes de 15 tanto para leitura quanto para reativacao e confirmacao no Supabase.
+
+### Prevencao
+
+Ao enviar listas longas em filtros de URL do PostgREST pelo Apps Script, calcular o tamanho final da URL e usar lotes pequenos. Nao presumir que o limite do Supabase e o mesmo limite do `UrlFetchApp`.
+
 ## 2026-06-24 - Importacao Supabase violou constraint `chk_status_cadastro`
 
 ### Erro

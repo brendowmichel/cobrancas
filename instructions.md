@@ -285,6 +285,8 @@ Ao final de uma importacao com registros validos, cobrancas antigas que nao apar
 
 A partir da v60, a importacao Supabase executa uma reconciliacao apos o upsert: todos os hashes lidos no Excel sao reativados explicitamente e relidos do banco para confirmacao. Se qualquer titulo lido nao existir ou continuar inativo, a importacao retorna erro em vez de concluir com sucesso e deixar titulos ocultos na dashboard.
 
+Na v62, essa reconciliacao trabalha com no maximo 15 hashes por consulta/atualizacao. Cada hash SHA-256 tem 64 caracteres; lotes maiores podem ultrapassar o limite de URL do `UrlFetchApp` ao montar o filtro PostgREST `in.(...)`.
+
 Na v61, quando houver divergencia entre arquivo importado e dashboard, usar `diagnosticarTitulosClienteSupabase(documento)` antes de alterar regras de agrupamento ou atividade. O retorno registra os titulos brutos efetivamente recebidos do Supabase e a decisao aplicada pela dashboard.
 
 ## Duplicidades
