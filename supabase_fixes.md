@@ -64,6 +64,20 @@ A reconciliacao pos-importacao enviava 100 hashes SHA-256 no filtro PostgREST `i
 
 Na v62, o lote foi reduzido para 15 hashes. Cada lote e consultado, reativado e confirmado separadamente.
 
+## 2026-08-20 - Titulos existentes associados a campos antigos
+
+### Sintoma
+
+O arquivo foi lido com 213 registros e todos foram classificados como existentes. Mesmo assim, dois RPS de um cliente nao eram retornados pelo filtro de CNPJ no Supabase.
+
+### Causa
+
+Os registros possuiam `hash_identificacao` correspondente ao Excel, mas campos salvos de uma migracao anterior estavam divergentes. Como `hash_conteudo` tambem era igual, o fluxo anterior nao regravava as colunas de origem.
+
+### Correcao
+
+Na v63, o upsert de todo titulo identificado por hash passa a regravar os campos de origem normalizados e preservar somente os campos manuais. Isso repara CNPJ/CPF, numero, datas, categoria e valores sem criar novo titulo.
+
 ## 2026-06-24 - Decisao: desabilitar RLS nas tabelas do sistema
 
 ### Contexto

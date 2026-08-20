@@ -287,6 +287,8 @@ A partir da v60, a importacao Supabase executa uma reconciliacao apos o upsert: 
 
 Na v62, essa reconciliacao trabalha com no maximo 15 hashes por consulta/atualizacao. Cada hash SHA-256 tem 64 caracteres; lotes maiores podem ultrapassar o limite de URL do `UrlFetchApp` ao montar o filtro PostgREST `in.(...)`.
 
+Na v63, encontrar a mesma `hash_identificacao` sempre atualiza os campos vindos da origem, mesmo quando `hash_conteudo` tambem for igual. Isso protege a base contra migracoes antigas em que as hashes foram preservadas, mas alguma coluna gravada ficou divergente. Campos manuais (`observacao`, `responsavel` e `status_negociacao`) continuam preservados.
+
 Na v61, quando houver divergencia entre arquivo importado e dashboard, usar `diagnosticarTitulosClienteSupabase(documento)` antes de alterar regras de agrupamento ou atividade. O retorno registra os titulos brutos efetivamente recebidos do Supabase e a decisao aplicada pela dashboard.
 
 ## Duplicidades

@@ -2,6 +2,24 @@
 
 Este arquivo registra erros de programacao encontrados no Google Apps Script e a correcao aplicada. Ele deve ser atualizado sempre que um erro de script, implantacao, permissao ou comportamento inesperado for diagnosticado e corrigido.
 
+## 2026-08-20 - Hash correta com campos de titulo desatualizados
+
+### Sintoma
+
+Uma importacao registrou `213 ja existiam` e `0 atualizados`, mas dois RPS do cliente nao apareciam ao buscar pelo CNPJ correto. O diagnostico mostrou que somente dois titulos estavam associados ao documento na tabela.
+
+### Causa
+
+Quando `hash_conteudo` era igual, o importador atualizava apenas campos tecnicos. Em registros migrados, era possivel manter hash de identificacao/conteudo correta enquanto uma coluna de origem, como `cnpj_cpf`, permanecia com valor antigo ou incorreto.
+
+### Correcao aplicada
+
+Na v63, todo titulo encontrado pela `hash_identificacao` recebe novamente os campos da origem no upsert. O contador `atualizados` tambem considera divergencia entre os campos normalizados e o registro importado. Campos manuais sao preservados.
+
+### Prevencao
+
+Hashes servem para identificar e detectar mudancas, mas nao devem impedir a reparacao de colunas materiais em bases migradas. Validar campos usados para agrupamento e busca, especialmente `cnpj_cpf`.
+
 ## 2026-08-20 - Limite de comprimento de URL na reconciliacao Supabase
 
 ### Erro
