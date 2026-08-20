@@ -282,6 +282,8 @@ Ao atualizar uma cobranca existente:
 
 Ao final de uma importacao com registros validos, cobrancas antigas que nao aparecerem no arquivo atual devem receber `ativo_na_ultima_importacao = NAO`. Cobrancas encontradas no arquivo atual devem receber `SIM`.
 
+A partir da v60, a importacao Supabase executa uma reconciliacao apos o upsert: todos os hashes lidos no Excel sao reativados explicitamente e relidos do banco para confirmacao. Se qualquer titulo lido nao existir ou continuar inativo, a importacao retorna erro em vez de concluir com sucesso e deixar titulos ocultos na dashboard.
+
 ## Duplicidades
 
 O sistema deve manter uma area de possiveis duplicidades.

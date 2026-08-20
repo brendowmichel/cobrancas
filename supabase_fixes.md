@@ -4,6 +4,30 @@ Este arquivo registra erros, permissoes, constraints, policies, importacoes CSV 
 
 Use este arquivo sempre que um erro vier do Supabase, PostgREST, RLS, SQL Editor, CSV import ou constraints do banco.
 
+## 2026-08-20 - Importacao concluia sem confirmar titulos ativos
+
+### Sintoma
+
+Um arquivo Excel continha quatro titulos vencidos do mesmo cliente, mas a dashboard exibia somente dois. No arquivo `pivot (2).xlsx`, para o CNPJ `06.922.577/0001-37`, foram confirmados os RPS `1133`, `1283`, `1389` e `1465`, todos com R$ 400,00 em aberto.
+
+### Causa provavel
+
+A importacao fazia o upsert e seguia para a inativacao dos titulos ausentes sem uma verificacao posterior de que cada hash lida estava realmente presente e ativa no Supabase. Isso permitia que uma falha parcial ou um estado antigo `ativo_na_ultima_importacao = false` passasse despercebido e ocultasse titulos na dashboard.
+
+### Correcao aplicada
+
+Na v60 do GAS, apos o upsert, cada lote de hashes importadas e:
+
+- relido para identificar titulos inativos;
+- reativado explicitamente;
+- relido novamente para confirmar existencia e atividade.
+
+Se algum hash nao for confirmado, a importacao e interrompida com erro claro e nao deve ser tratada como concluida.
+
+### Prevencao
+
+Toda importacao de snapshot deve validar a persistencia dos titulos antes de inativar registros que nao vieram no arquivo atual.
+
 ## 2026-06-24 - Decisao: desabilitar RLS nas tabelas do sistema
 
 ### Contexto
