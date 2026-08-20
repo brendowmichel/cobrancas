@@ -28,6 +28,26 @@ Se algum hash nao for confirmado, a importacao e interrompida com erro claro e n
 
 Toda importacao de snapshot deve validar a persistencia dos titulos antes de inativar registros que nao vieram no arquivo atual.
 
+## 2026-08-20 - Dashboard ainda divergente apos reconciliacao de importacao
+
+### Sintoma
+
+Mesmo com a v60 ativa, a dashboard continuou mostrando dois titulos para o CNPJ `06.922.577/0001-37`, enquanto o arquivo de origem possui quatro RPS vencidos.
+
+### Acao de diagnostico
+
+Na v61 foi criada a funcao `diagnosticarTitulosClienteSupabase(documento)`. Ela consulta a tabela `cobranca_titulos` diretamente pelo CNPJ/CPF e registra:
+
+- todos os titulos retornados;
+- flag `ativo_na_ultima_importacao`;
+- valor em aberto e vencimento;
+- decisao de vencimento usada pela dashboard;
+- arquivo e data da ultima importacao.
+
+### Prevencao
+
+Em divergencias entre Excel e dashboard, validar primeiro o estado bruto da tabela no Supabase. Nao presumir que a causa e agrupamento, importacao ou implantacao sem essa evidencia.
+
 ## 2026-06-24 - Decisao: desabilitar RLS nas tabelas do sistema
 
 ### Contexto

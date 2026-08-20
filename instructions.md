@@ -125,6 +125,7 @@ Funcoes de configuracao adicionadas na v45:
 - `salvarConfigSupabase(url, apiKey)` - salva URL/API key em `ScriptProperties`.
 - `testarSupabase()` - consulta a view `cobranca_dashboard_clientes` e confirma se a conexao esta funcionando.
 - `diagnosticarSupabase()` - compara contagens da view e de `cobranca_titulos`, registrando no Logger se ha dados abertos/vencidos.
+- `diagnosticarTitulosClienteSupabase(documento)` - consulta os titulos brutos de um CNPJ/CPF no Supabase e informa quais estao ativos, vencidos e considerados pela dashboard. Sem argumento, usa o CNPJ do caso de diagnostico atual.
 - `supabaseGet_(resource, query)`
 - `supabasePost_(resource, payload, query, prefer)`
 - `supabasePatch_(resource, payload, query, prefer)`
@@ -283,6 +284,8 @@ Ao atualizar uma cobranca existente:
 Ao final de uma importacao com registros validos, cobrancas antigas que nao aparecerem no arquivo atual devem receber `ativo_na_ultima_importacao = NAO`. Cobrancas encontradas no arquivo atual devem receber `SIM`.
 
 A partir da v60, a importacao Supabase executa uma reconciliacao apos o upsert: todos os hashes lidos no Excel sao reativados explicitamente e relidos do banco para confirmacao. Se qualquer titulo lido nao existir ou continuar inativo, a importacao retorna erro em vez de concluir com sucesso e deixar titulos ocultos na dashboard.
+
+Na v61, quando houver divergencia entre arquivo importado e dashboard, usar `diagnosticarTitulosClienteSupabase(documento)` antes de alterar regras de agrupamento ou atividade. O retorno registra os titulos brutos efetivamente recebidos do Supabase e a decisao aplicada pela dashboard.
 
 ## Duplicidades
 
